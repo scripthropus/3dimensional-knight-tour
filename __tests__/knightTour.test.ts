@@ -1,5 +1,5 @@
 import { it, expect } from 'vitest';
-import { knightMoves3D, Position3D } from '../src/knightTour.ts';
+import { knightMoves3D, Position3D, makeTour } from '../src/knightTour.ts';
 
 it('a1A moves', () => {
 const position: Position3D = { file: "a", rank: 1, level: "A" };
@@ -59,3 +59,58 @@ expected.forEach((move) => {
     expect(result).toContainEqual(move);
 });
 });
+
+it('スタート位置が指定した位置になっているか', () => {
+const startPos: Position3D = { file: 'd', rank: 4, level: 'D' };
+const tour = makeTour(10, startPos);
+
+expect(tour[0]).toEqual(startPos);
+});
+
+it('指定した長さのツアーになっているか', () => {
+const startPos: Position3D = { file: 'e', rank: 5, level: 'E' };
+const steps = 20;
+const tour = makeTour(steps, startPos);
+
+expect(tour.length).toBeLessThanOrEqual(steps);
+});
+
+it('ナイトの動きに沿ったツアーが生成されているか', () => {
+const startPos: Position3D = { file: 'c', rank: 3, level: 'C' };
+const tour = makeTour(15, startPos);
+
+for (let i = 1; i < tour.length; i++) {
+    const prevPos = tour[i - 1];
+    const currentPos = tour[i];
+    const validMoves = knightMoves3D(prevPos);
+    
+    const isValidMove = validMoves.some(move => 
+    move.file === currentPos.file && 
+    move.rank === currentPos.rank && 
+    move.level === currentPos.level
+    );
+    
+    expect(isValidMove).toBeTruthy();
+}
+});
+
+it('同じ位置を通らない', () => {
+const startPos: Position3D = { file: 'b', rank: 2, level: 'B' };
+const tour = makeTour(30, startPos);
+
+const uniquePositions = new Set();
+let allUnique = true;
+
+for (const pos of tour) {
+    const posKey = `${pos.file}-${pos.rank}-${pos.level}`;
+    if (uniquePositions.has(posKey)) {
+    allUnique = false;
+    break;
+    }
+    uniquePositions.add(posKey);
+}
+
+expect(allUnique).toBeTruthy();
+expect(uniquePositions.size).toEqual(tour.length);
+});
+

@@ -51,34 +51,39 @@ export function knightMoves3D(pos: Position3D): Position3D[] {
   return allPoisons; 
 }
 
-/*
-export function makeTour(steps: number, startPos: Position) {
-	const tour: Position[] = [startPos];
-
-	while (tour.length < steps) {
-		const currentPos = tour[tour.length - 1];
-		const possibleMoves = knightMoves(currentPos).filter(
-			(move) => !tour.includes(move),
-		);
-
-		if (possibleMoves.length === 0) {
-			break;
-		}
-
-		const rand = Math.floor(Math.random() * possibleMoves.length);
-		const nextMove = possibleMoves[rand];
-
-		const futureMovesAvailable = knightMoves(nextMove).some(
-			(move) => !tour.includes(move) && move !== nextMove,
-		);
-
-		if (!futureMovesAvailable) {
-			continue;
-		}
-
-		tour.push(nextMove);
-	}
-
-	return tour;
+function isSamePosition(pos1: Position3D, pos2: Position3D): boolean {
+  return pos1.file === pos2.file && 
+         pos1.rank === pos2.rank && 
+         pos1.level === pos2.level;
 }
-*/
+
+export function makeTour(steps: number, startPos: Position3D) {
+  const tour: Position3D[] = [startPos];
+  
+  while (tour.length < steps) {
+    const currentPos = tour[tour.length - 1];
+    const possibleMoves = knightMoves3D(currentPos).filter(
+      (move) => !tour.some(pos => isSamePosition(pos, move))
+    );
+    
+    if (possibleMoves.length === 0) {
+      break;
+    }
+    
+    const rand = Math.floor(Math.random() * possibleMoves.length);
+    const nextMove = possibleMoves[rand];
+    
+	//次の手で行先が残っているかどうか
+    const futureMovesAvailable = knightMoves3D(nextMove).some(
+      (move) => !tour.some(pos => isSamePosition(pos, move)) && !isSamePosition(move, nextMove)
+    );
+    
+    if (!futureMovesAvailable) {
+      continue;
+    }
+    
+    tour.push(nextMove);
+  }
+  
+  return tour;
+}
