@@ -4,12 +4,12 @@ export type Position3D = {
 	level: Levels;
 }
 
-type Files = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
-type FileIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-type Ranks = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-type RankIndex =  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-type Levels = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
-type LevelIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type Files = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h";
+export type FileIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type Ranks = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+export type RankIndex =  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type Levels = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H";
+export type LevelIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 type KnightMove3DIndex = readonly [FileIndex, RankIndex, LevelIndex];
 type KnightMove2DIndex = [FileIndex, RankIndex] | [FileIndex, LevelIndex] | [RankIndex, LevelIndex];
@@ -17,9 +17,9 @@ type KnightMove2DIndex = [FileIndex, RankIndex] | [FileIndex, LevelIndex] | [Ran
 type KnightPatterns = [1,2] | [1,-2] | [2,1] | [2,-1] | [-1,2] | [-1,-2] | [-2,1] | [-2,-1];
 const knightPatterns: KnightPatterns[] = [[1,2], [1,-2], [2,1], [2,-1], [-1,2], [-1,-2], [-2,1], [-2,-1]];
 
-const files: Files[] = ["a", "b", "c", "d", "e", "f", "g", "h"] as const;
-const ranks: Ranks[] = [1, 2, 3, 4, 5, 6, 7, 8] as const;
-const levels: Levels[] = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
+export const files: Files[] = ["a", "b", "c", "d", "e", "f", "g", "h"] as const;
+export const ranks: Ranks[] = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+export const levels: Levels[] = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 
 
 export function knightMoves3D(pos: Position3D): Position3D[] {
