@@ -1,9 +1,9 @@
-import './App.css'
+import { ChessBoards } from './ChessBoards'
 
 function App() {
   return (
-    <div>
-      test
+    <div className='container'>
+      <ChessBoards />
     </div>
   )
 }

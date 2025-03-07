@@ -5,8 +5,7 @@ type ChessBoardProps = {
   level: Levels;
 }
 
-//: React.FC<ChessBoardProps>
-export const ChessBoard = () => {
+export const ChessBoard: React.FC<ChessBoardProps> = ( {level: ChessBoardProps}) => {
 
 	return (
 		<>
