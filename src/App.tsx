@@ -1,11 +1,11 @@
-import { ChessBoards } from './ChessBoards'
+import { ChessBoards } from "./ChessBoards";
 
 function App() {
-  return (
-    <div className='container'>
-      <ChessBoards />
-    </div>
-  )
+	return (
+		<div className="container">
+			<ChessBoards />
+		</div>
+	);
 }
 
-export default App
+export default App;
