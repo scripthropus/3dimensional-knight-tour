@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "npx @biomejs/biome format --write ./src/",
+    "lint": "npx @biomejs/biome format --write ./src/ && npx @biomejs/biome format --write ./__tests__/",
     "preview": "vite preview",
     "test": "vitest"
   },

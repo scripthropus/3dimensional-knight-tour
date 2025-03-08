@@ -1,17 +1,15 @@
-import { render, screen,  } from '@testing-library/react';
-import { it, expect } from 'vitest';
-import { ChessBoards } from '../src/ChessBoards';
-import React from 'react';
+import { render, screen } from "@testing-library/react";
+import { it, expect, vi } from "vitest";
+import { ChessBoards } from "../src/ChessBoards";
+import { ranks, files, levels } from "../src/knightTour.ts";
+import React from "react";
 import "@testing-library/jest-dom/vitest";
 
+it("各ボードに正しいレベルが割り当てられている", () => {
+	render(<ChessBoards />);
 
-it('各ボードに正しいレベルが割り当てられている', () => {
-render(<ChessBoards />);
-const levels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-
-levels.forEach(level => {
-    const boardTitle = screen.getByText(`Level ${level}`);
-    expect(boardTitle).toBeInTheDocument();
+	levels.forEach((level) => {
+		expect(screen.getByText(`Level ${level}`)).toBeInTheDocument();
+		//expect(screen.getByTestId(`chess-board-${level}`)).toBeInTheDocument();
+	});
 });
-});
-
