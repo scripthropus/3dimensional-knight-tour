@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ChessBoard } from "./ChessBoard.tsx";
 import "./chessBoards.css";
-import { Levels, levels, Position3D } from "./knightTour.ts";
+import { Levels, levels, Position3D, makeTour } from "./knightTour.ts";
 
 export const ChessBoards = () => {
-	const [validMoves, setValidMoves] = useState<Position3D[]>([]);
+	const testPos: Position3D = { file: "e", rank: 5, level: "E" };
+	const [validMoves, setValidMoves] = useState<Position3D[]>(
+		makeTour(50, testPos),
+	);
 	const onSquareClick = () => {};
 	return (
 		<div className=" layout-container">

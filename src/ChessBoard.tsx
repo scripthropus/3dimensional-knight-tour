@@ -12,6 +12,14 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
 	onSquareClick,
 	validMoves,
 }) => {
+	const isValidMove = (thisSquare: Position3D) => {
+		return validMoves.some(
+			(move) =>
+				move.file === thisSquare.file &&
+				move.rank === thisSquare.rank &&
+				move.level === thisSquare.level,
+		);
+	};
 	return (
 		<div className="chessBoard">
 			{ranks.map((rank) =>
@@ -28,18 +36,11 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
 						<div
 							key={squareId}
 							onClick={() => {
-								if (
-									validMoves.some(
-										(move) =>
-											move.file === thisSquare.file &&
-											move.rank === thisSquare.rank &&
-											move.level === thisSquare.level,
-									)
-								) {
+								if (isValidMove(thisSquare)) {
 									onSquareClick(thisSquare);
 								}
 							}}
-							className={`square ${isWhite ? "black" : "white"} `}
+							className={`square ${isWhite ? "black" : "white"} ${isValidMove(thisSquare) ? "" : "vacant"}`}
 						>
 							{squareId}
 						</div>

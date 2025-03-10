@@ -2,8 +2,10 @@ import { ChessBoards } from "./ChessBoards";
 
 function App() {
 	return (
-		<div className="container">
-			<ChessBoards />
+		<div className="bg">
+			<div className="container">
+				<ChessBoards />
+			</div>
 		</div>
 	);
 }

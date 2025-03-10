@@ -129,13 +129,10 @@ it("違う階層で移動可能マスでない場合onSquareClickが呼ばれな
 		/>,
 	);
 
-	// Cレベルの任意のマスをクリック
 	fireEvent.click(screen.getByText("d4"));
 
-	// onSquareClickが呼ばれていないことを確認
 	expect(mockOnClick).not.toHaveBeenCalled();
 
-	// 別のマスでも試す
 	fireEvent.click(screen.getByText("a1"));
 	expect(mockOnClick).not.toHaveBeenCalled();
 });
