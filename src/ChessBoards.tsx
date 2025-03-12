@@ -1,16 +1,22 @@
 import { useState } from "react";
 import { ChessBoard } from "./ChessBoard.tsx";
 import "./chessBoards.css";
-import { Levels, levels, Position3D, makeTour } from "./knightTour.ts";
+import { levels, Position3D, knightMoves3D, ranks } from "./knightTour.ts";
 
-export const ChessBoards = () => {
-	const testPos: Position3D = { file: "e", rank: 5, level: "E" };
-	const [validMoves, setValidMoves] = useState<Position3D[]>(
-		makeTour(50, testPos),
+type ChessBoardsProps = {
+	validMoves: Position3D[];
+};
+
+export const ChessBoards: React.FC<ChessBoardsProps> = ({ validMoves }) => {
+	const [currentPos, setCurrentPos] = useState<Position3D>(validMoves[0]);
+	const [possibleMoves, setPossibleMoves] = useState<Position3D[]>(
+		knightMoves3D(currentPos),
 	);
-	const onSquareClick = () => {};
+	const onSquareClick = () => {
+		console.log(currentPos);
+	};
 	return (
-		<div className=" layout-container">
+		<div className="layout-container">
 			{levels.map((level) => (
 				<div key={level} className="square-wrapper">
 					<div className="number">Level {level}</div>
@@ -18,6 +24,8 @@ export const ChessBoards = () => {
 						level={level}
 						onSquareClick={onSquareClick}
 						validMoves={validMoves}
+						possibleMoves={possibleMoves}
+						currentPos={currentPos}
 					/>
 				</div>
 			))}

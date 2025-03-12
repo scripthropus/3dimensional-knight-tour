@@ -36,3 +36,16 @@
 .vacant {
 	background-color: #101725;
 }
+.possibleMove::after {
+	content: "";
+	display: block;
+	width: 10px;
+	height: 10px;
+	background-color: #7e8c62;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}

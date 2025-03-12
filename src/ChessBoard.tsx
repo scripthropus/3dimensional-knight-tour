@@ -5,21 +5,40 @@ type ChessBoardProps = {
 	level: Levels;
 	onSquareClick: (pos: Position3D) => void;
 	validMoves: Position3D[];
+	possibleMoves: Position3D[];
+	currentPos: Position3D;
 };
 
 export const ChessBoard: React.FC<ChessBoardProps> = ({
 	level,
 	onSquareClick,
 	validMoves,
+	possibleMoves,
+	currentPos,
 }) => {
-	const isValidMove = (thisSquare: Position3D) => {
-		return validMoves.some(
+	const isSamePosition = (a: Position3D, b: Position3D): boolean => {
+		return a.file === b.file && a.rank === b.rank && a.level === b.level;
+	};
+
+	const matchesAnyPosition = (
+		square: Position3D,
+		moveArray: Position3D[],
+	): boolean => {
+		return moveArray.some(
 			(move) =>
-				move.file === thisSquare.file &&
-				move.rank === thisSquare.rank &&
-				move.level === thisSquare.level,
+				move.file === square.file &&
+				move.rank === square.rank &&
+				move.level === square.level,
 		);
 	};
+
+	const isValidAndPossibleMove = (thisSquare: Position3D): boolean => {
+		return (
+			matchesAnyPosition(thisSquare, validMoves) &&
+			matchesAnyPosition(thisSquare, possibleMoves)
+		);
+	};
+
 	return (
 		<div className="chessBoard">
 			{ranks.map((rank) =>
@@ -36,11 +55,11 @@ export const ChessBoard: React.FC<ChessBoardProps> = ({
 						<div
 							key={squareId}
 							onClick={() => {
-								if (isValidMove(thisSquare)) {
+								if (isValidAndPossibleMove(thisSquare)) {
 									onSquareClick(thisSquare);
 								}
 							}}
-							className={`square ${isWhite ? "black" : "white"} ${isValidMove(thisSquare) ? "" : "vacant"}`}
+							className={`square ${isWhite ? "black" : "white"} ${isSamePosition(thisSquare, currentPos) ? "selectedSquare" : ""} ${matchesAnyPosition(thisSquare, validMoves) ? "" : "vacant"} ${isValidAndPossibleMove(thisSquare) ? "possibleMove" : ""}`}
 						>
 							{squareId}
 						</div>
