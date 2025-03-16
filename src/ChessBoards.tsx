@@ -12,8 +12,9 @@ export const ChessBoards: React.FC<ChessBoardsProps> = ({ validMoves }) => {
 	const [possibleMoves, setPossibleMoves] = useState<Position3D[]>(
 		knightMoves3D(currentPos),
 	);
-	const onSquareClick = () => {
-		console.log(currentPos);
+	const onSquareClick = (pos: Position3D) => {
+		setCurrentPos(() => pos);
+		setPossibleMoves(() => knightMoves3D(pos));
 	};
 	return (
 		<div className="layout-container">
