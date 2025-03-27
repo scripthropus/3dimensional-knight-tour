@@ -1,19 +1,45 @@
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { ChessBoards } from "./ChessBoards";
 import { makeTour, Position3D } from "./knightTour";
 import { Button } from "./Button.tsx";
+import { jwtDecode } from "jwt-decode";
 
 function App() {
 	const testPos: Position3D = { file: "e", rank: 5, level: "E" };
 	const [tour, setTour] = useState<Position3D[]>(makeTour(50, testPos));
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 	return (
-		<div className="bg">
-			<Button setTour={setTour} tour={tour}></Button>
-			<div className="container">
-				<ChessBoards tour={tour} />
+		<GoogleOAuthProvider clientId={clientId || ""}>
+			<div className="app-container">
+				{!isLoggedIn ? (
+					<div className="login-container">
+						<h1>ログインしてください</h1>
+						<GoogleLogin
+							onSuccess={(credentialResponse) => {
+								console.log(credentialResponse);
+								setIsLoggedIn(true);
+							}}
+							onError={() => {
+								console.log("ログインに失敗しました");
+							}}
+						/>
+					</div>
+				) : (
+					<div className="bg">
+						<div>
+							<Button setTour={setTour} tour={tour}></Button>
+							<div className="container">
+								<ChessBoards tour={tour} />
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
-		</div>
+		</GoogleOAuthProvider>
 	);
 }
 

@@ -1,4 +1,4 @@
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 import { makeTour, Position3D, files, ranks, levels } from "./knightTour";
 type ButtonProps = {
 	setTour: React.Dispatch<React.SetStateAction<Position3D[]>>;
