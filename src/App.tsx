@@ -4,6 +4,7 @@ import { ChessBoards } from "./ChessBoards";
 import { makeTour, Position3D } from "./knightTour";
 import { Button } from "./Button.tsx";
 import { jwtDecode } from "jwt-decode";
+import "./css/App.css";
 
 function App() {
 	const testPos: Position3D = { file: "e", rank: 5, level: "E" };
@@ -29,10 +30,10 @@ function App() {
 						/>
 					</div>
 				) : (
-					<div className="bg">
+					<div className="container">
 						<div>
 							<Button setTour={setTour} tour={tour}></Button>
-							<div className="container">
+							<div>
 								<ChessBoards tour={tour} />
 							</div>
 						</div>

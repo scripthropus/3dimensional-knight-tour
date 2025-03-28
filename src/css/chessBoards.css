@@ -2,11 +2,9 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	width: 100%;
-	max-width: min(95vw, 95vh * 2);
-	height: auto;
-	gap: 10px;
+	max-width: min(90vw, 90vh * 2);
 	padding: 10px;
+	gap: 10px;
 	box-sizing: border-box;
 	margin: 0 auto;
 	background-color: #101725;

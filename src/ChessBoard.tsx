@@ -1,5 +1,5 @@
 import { Levels, ranks, files, levels, Position3D } from "./knightTour";
-import "./chessBoard.css";
+import "./css/chessBoard.css";
 
 type ChessBoardProps = {
 	level: Levels;

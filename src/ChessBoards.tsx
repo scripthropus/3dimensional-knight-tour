@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChessBoard } from "./ChessBoard.tsx";
-import "./chessBoards.css";
+import "./css/chessBoards.css";
 import { levels, Position3D, knightMoves3D, ranks } from "./knightTour.ts";
 
 type ChessBoardsProps = {
@@ -25,7 +25,6 @@ export const ChessBoards: React.FC<ChessBoardsProps> = ({ tour }) => {
 		<div className="layout-container">
 			{levels.map((level) => (
 				<div key={level} className="square-wrapper">
-					<div className="number">Level {level}</div>
 					<ChessBoard
 						level={level}
 						onSquareClick={onSquareClick}
