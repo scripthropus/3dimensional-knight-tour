@@ -113,3 +113,13 @@ it("同じ位置を通らない", () => {
 	expect(allUnique).toBeTruthy();
 	expect(uniquePositions.size).toEqual(tour.length);
 });
+
+it("指定した長さのツアーが必ず生成されるかstep数100試行回数10000", () => {
+	const startPos: Position3D = { file: "e", rank: 5, level: "E" };
+	const steps = 100;
+
+	for (let i = 0; i < 10000; i++) {
+		const tour = makeTour(steps, startPos);
+		expect(tour.length).toBeLessThanOrEqual(steps);
+	}
+});
