@@ -1,18 +1,40 @@
 .buttonsContainer {
 	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	width: 100%;
-}
-
-.buttonsContainer > div {
-	display: flex;
-	gap: 10px;
-	flex-wrap: wrap;
+	flex-direction: column; /* ボタン列とツアー表示を縦に配置 */
 	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 15px; /* ツアー表示エリアとの間隔 */
 }
 
-/* ボタンのスタイル */
+/* ボタンを横並びにするためのコンテナ */
+.buttons-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center; /* ボタンを中央寄せ */
+	align-items: center;
+	gap: 15px; /* ボタン間の間隔 */
+	width: 100%;
+	padding: 0 10%; /* 端から少し離す */
+	box-sizing: border-box;
+	margin-bottom: 15px;
+}
+
+/* 中型画面用の調整 */
+@media (max-width: 768px) {
+	.buttons-row {
+		padding: 0 5%;
+	}
+}
+
+/* 小型画面用の調整 - 縦並びに変更 */
+@media (max-width: 480px) {
+	.buttons-row {
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
 .buttonsContainer button {
 	padding: 8px 16px;
 	background-color: #3a506b;
@@ -34,7 +56,6 @@
 	opacity: 0.7;
 }
 
-/* 入力フィールドのスタイル */
 .buttonsContainer input[type="number"] {
 	padding: 8px;
 	width: 60px;
@@ -44,15 +65,22 @@
 	text-align: center;
 }
 
+/* ツアー表示エリア用のコンテナ */
+.tour-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
 /* ツアー表示エリアのスタイル */
 .tour {
-	margin-top: 5px;
+	width: 100%;
 	padding: 10px;
 	background-color: #1c2736;
 	border-radius: 4px;
 	font-size: 14px;
 	color: #e0e0e0;
-	max-width: 100%;
 	overflow-x: auto;
 	white-space: nowrap;
+	box-sizing: border-box;
 }

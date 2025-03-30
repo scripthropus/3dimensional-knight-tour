@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { makeTour, Position3D, files, ranks, levels } from "./knightTour";
 import "./css/button.css";
+
 type TourButtonProps = {
 	setTour: React.Dispatch<React.SetStateAction<Position3D[]>>;
 	tour: Position3D[];
 };
+
 export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [steps, setSteps] = useState(10);
@@ -19,7 +21,6 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 			file: randFile,
 			level: randLevel,
 		};
-
 		setTour(() => makeTour(steps, startPos));
 	};
 
@@ -32,10 +33,11 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 
 	return (
 		<div className="buttonsContainer">
-			<div>
+			<div className="buttons-row">
 				<button onClick={handleGenerateTour} disabled={isGenerating}>
 					{isGenerating ? "生成中..." : "ナイトツアーの生成"}
 				</button>
+
 				<input
 					id="number"
 					type="number"
@@ -44,16 +46,20 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 					min="2"
 					max="32"
 				/>
+
 				{tour.length > 0 && (
 					<button onClick={() => setShowSolution(!showSolution)}>
 						{showSolution ? "解答を隠す" : "解答を表示"}
 					</button>
 				)}
 			</div>
+
 			{tour.length > 0 && showSolution && (
-				<div className="tour">
-					ツアー:{" "}
-					{tour.map((move) => `${move.rank}${move.file}${move.level}` + "->")}
+				<div className="tour-container">
+					<div className="tour">
+						ツアー:{" "}
+						{tour.map((move) => `${move.rank}${move.file}${move.level}` + "->")}
+					</div>
 				</div>
 			)}
 		</div>
