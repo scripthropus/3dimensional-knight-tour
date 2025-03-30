@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { makeTour, Position3D, files, ranks, levels } from "./knightTour";
 import "./css/button.css";
-type ButtonProps = {
+type TourButtonProps = {
 	setTour: React.Dispatch<React.SetStateAction<Position3D[]>>;
 	tour: Position3D[];
 };
-export const Button = ({ setTour, tour }: ButtonProps) => {
+export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 	const [isGenerating, setIsGenerating] = useState(false);
 	const [steps, setSteps] = useState(10);
 	const [showSolution, setShowSolution] = useState(false);

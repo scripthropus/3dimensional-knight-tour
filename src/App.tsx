@@ -2,8 +2,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { ChessBoards } from "./ChessBoards";
 import { makeTour, Position3D } from "./knightTour";
-import { Button } from "./Button.tsx";
-import { jwtDecode } from "jwt-decode";
+import { TourButton } from "./TourButton.tsx";
 import "./css/App.css";
 
 function App() {
@@ -18,24 +17,27 @@ function App() {
 			<div className="app-container">
 				{!isLoggedIn ? (
 					<div className="login-container">
-						<h1>ログインしてください</h1>
-						<GoogleLogin
-							onSuccess={(credentialResponse) => {
-								console.log(credentialResponse);
-								setIsLoggedIn(true);
-							}}
-							onError={() => {
-								console.log("ログインに失敗しました");
-							}}
-						/>
+						<div className="image-container"></div>
+
+						<div className="login-box">
+							<h1>ログインしますか</h1>
+							<p>ログインするとツアーの保存ができます</p>
+							<GoogleLogin
+								onSuccess={(credentialResponse) => {
+									console.log(credentialResponse);
+									setIsLoggedIn(true);
+								}}
+								onError={() => {
+									console.log("ログインに失敗しました");
+								}}
+							/>
+						</div>
 					</div>
 				) : (
 					<div className="container">
 						<div>
-							<Button setTour={setTour} tour={tour}></Button>
-							<div>
-								<ChessBoards tour={tour} />
-							</div>
+							<TourButton setTour={setTour} tour={tour} />
+							<ChessBoards tour={tour} />
 						</div>
 					</div>
 				)}
