@@ -1,0 +1,21 @@
+@import "./variables.css";
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-color: var(--color-bg-primary);
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+#root {
+	height: 100vh;
+}
+
+.responsive-container {
+	min-width: var(--min-width);
+	min-height: var(--min-height);
+	overflow: auto;
+}

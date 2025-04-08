@@ -112,7 +112,7 @@ function isSamePosition(pos1: Position3D, pos2: Position3D): boolean {
 	);
 }
 
-export function makeTour(steps: number, startPos: Position3D) {
+export async function makeTour(steps: number, startPos: Position3D) {
 	const tour: Position3D[] = [startPos];
 
 	while (tour.length < steps) {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { makeTour, Position3D, files, ranks, levels } from "./knightTour";
+import { ToggleButton, Button } from "@mui/material";
 import "./css/button.css";
 
 type TourButtonProps = {
@@ -12,7 +13,7 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 	const [steps, setSteps] = useState(10);
 	const [showSolution, setShowSolution] = useState(false);
 
-	const handleGenerateTour = () => {
+	const handleGenerateTour = async () => {
 		const randRank = ranks[Math.floor(Math.random() * ranks.length)];
 		const randFile = files[Math.floor(Math.random() * files.length)];
 		const randLevel = levels[Math.floor(Math.random() * levels.length)];
@@ -21,12 +22,17 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 			file: randFile,
 			level: randLevel,
 		};
-		setTour(() => makeTour(steps, startPos));
+		try {
+			const newTour = await makeTour(steps, startPos);
+			setTour(() => newTour);
+		} catch (e) {
+			console.log(`ナイトツアーの生成中にエラー ${e}`);
+		}
 	};
 
 	const handleStepsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = Number.parseInt(e.target.value);
-		if (!isNaN(value) && value > 0) {
+		if (!isNaN(value) && value > 1) {
 			setSteps(value);
 		}
 	};
@@ -34,31 +40,40 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 	return (
 		<div className="buttonsContainer">
 			<div className="buttons-row">
-				<button onClick={handleGenerateTour} disabled={isGenerating}>
+				<Button
+					variant="contained"
+					onClick={handleGenerateTour}
+					disabled={isGenerating}
+				>
 					{isGenerating ? "生成中..." : "ナイトツアーの生成"}
-				</button>
-
+				</Button>
 				<input
 					id="number"
 					type="number"
 					value={steps}
 					onChange={handleStepsChange}
-					min="2"
-					max="32"
+					max="384"
 				/>
 
 				{tour.length > 0 && (
-					<button onClick={() => setShowSolution(!showSolution)}>
-						{showSolution ? "解答を隠す" : "解答を表示"}
-					</button>
+					<ToggleButton
+						value="check"
+						color="primary"
+						selected={showSolution}
+						onChange={() => setShowSolution((prevSelected) => !prevSelected)}
+					>
+						{showSolution ? "解答の非表示" : "解答の表示"}
+					</ToggleButton>
 				)}
 			</div>
 
 			{tour.length > 0 && showSolution && (
 				<div className="tour-container">
 					<div className="tour">
-						ツアー:{" "}
-						{tour.map((move) => `${move.rank}${move.file}${move.level}` + "->")}
+						{tour.map(
+							(move, idx) =>
+								`${move.rank}${move.file}${move.level}${idx === tour.length - 1 ? "" : "->"}`,
+						)}
 					</div>
 				</div>
 			)}

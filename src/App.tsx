@@ -2,7 +2,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useState } from "react";
 import { Login } from "./Login";
 import { Chess } from "./Chess";
-import "./css/App.css";
+import "./css/base.css";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);

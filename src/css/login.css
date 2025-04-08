@@ -6,7 +6,7 @@
 }
 
 .image-container {
-	flex: 1; /* 左半分を占める */
+	flex: 1;
 	background-image: url("/knight.jpg");
 	background-size: cover;
 	background-position: center;
@@ -22,16 +22,16 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.2); /* 半透明のオーバーレイ */
+	background: rgba(0, 0, 0, 0.2);
 }
 
 .login-box {
-	flex: 1; /* 右半分を占める */
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	color: white;
+	color: var(--color-text-primary);
 	z-index: 1;
 }

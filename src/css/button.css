@@ -1,57 +1,40 @@
 .buttonsContainer {
 	display: flex;
-	flex-direction: column; /* ボタン列とツアー表示を縦に配置 */
+	flex-direction: column;
 	align-items: center;
 	width: 100%;
 	box-sizing: border-box;
-	margin-bottom: 15px; /* ツアー表示エリアとの間隔 */
 }
 
-/* ボタンを横並びにするためのコンテナ */
 .buttons-row {
 	display: flex;
 	flex-direction: row;
-	justify-content: center; /* ボタンを中央寄せ */
+	justify-content: center;
 	align-items: center;
-	gap: 15px; /* ボタン間の間隔 */
+	gap: var(--spacing-lg);
 	width: 100%;
-	padding: 0 10%; /* 端から少し離す */
+	padding: 0 10%;
 	box-sizing: border-box;
-	margin-bottom: 15px;
-}
-
-/* 中型画面用の調整 */
-@media (max-width: 768px) {
-	.buttons-row {
-		padding: 0 5%;
-	}
-}
-
-/* 小型画面用の調整 - 縦並びに変更 */
-@media (max-width: 480px) {
-	.buttons-row {
-		flex-direction: column;
-		gap: 10px;
-	}
+	margin-bottom: var(--spacing-lg);
 }
 
 .buttonsContainer button {
 	padding: 8px 16px;
-	background-color: #3a506b;
-	color: white;
+	background-color: var(--color-accent);
+	color: var(--color-text-primary);
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: var(--font-size-md);
 	transition: background-color 0.2s;
 }
 
 .buttonsContainer button:hover {
-	background-color: #4a617d;
+	background-color: var(--color-accent-hover);
 }
 
 .buttonsContainer button:disabled {
-	background-color: #263343;
+	background-color: var(--color-accent-disabled);
 	cursor: not-allowed;
 	opacity: 0.7;
 }
@@ -59,27 +42,25 @@
 .buttonsContainer input[type="number"] {
 	padding: 8px;
 	width: 60px;
-	border: 1px solid #3a506b;
+	border: 1px solid var(--color-accent);
 	border-radius: 4px;
-	font-size: 14px;
+	font-size: var(--font-size-md);
 	text-align: center;
 }
 
-/* ツアー表示エリア用のコンテナ */
 .tour-container {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 }
 
-/* ツアー表示エリアのスタイル */
 .tour {
 	width: 100%;
-	padding: 10px;
-	background-color: #1c2736;
+	padding: var(--spacing-md);
+	background-color: var(--color-bg-secondary);
 	border-radius: 4px;
-	font-size: 14px;
-	color: #e0e0e0;
+	font-size: var(--font-size-md);
+	color: var(--color-text-secondary);
 	overflow-x: auto;
 	white-space: nowrap;
 	box-sizing: border-box;

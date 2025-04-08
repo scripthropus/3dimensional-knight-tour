@@ -1,0 +1,32 @@
+:root {
+	/* カラーパレット */
+	--color-bg-primary: #101725;
+	--color-bg-secondary: #1c2736;
+	--color-accent: #3a506b;
+	--color-accent-hover: #4a617d;
+	--color-accent-disabled: #263343;
+	--color-text-primary: #ffffff;
+	--color-text-secondary: #e0e0e0;
+	--color-chess-white: #f0d9b5;
+	--color-chess-black: #b58863;
+	--color-chess-selected: #7e8c62;
+	--color-chess-visited: #c85554;
+
+	/* サイズ変数 */
+	--min-width: 720px;
+	--min-height: 405px;
+
+	/* ブレークポイント */
+	--breakpoint-md: 768px;
+	--breakpoint-sm: 480px;
+
+	/* スペーシング */
+	--spacing-sm: 5px;
+	--spacing-md: 10px;
+	--spacing-lg: 15px;
+
+	/* フォントサイズ */
+	--font-size-sm: 12px;
+	--font-size-md: 14px;
+	--font-size-lg: 16px;
+}

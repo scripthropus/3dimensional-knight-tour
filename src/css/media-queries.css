@@ -1,17 +1,5 @@
-.app-container {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	background-color: #101725;
-}
-
-/* スマホの場合 */
-@media (max-width: 768px) {
+/* media-queries.css - メディアクエリをまとめたファイル */
+@media (max-width: var(--breakpoint-md)) {
 	.login-container {
 		position: relative;
 	}
@@ -31,5 +19,16 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 2;
+	}
+
+	.buttons-row {
+		padding: 0 5%;
+	}
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+	.buttons-row {
+		flex-direction: column;
+		gap: var(--spacing-md);
 	}
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChessBoard } from "./ChessBoard.tsx";
-import "./css/chessBoards.css";
 import { levels, Position3D, knightMoves3D, ranks } from "./knightTour.ts";
+import "./css/chess.css";
 
 type ChessBoardsProps = {
 	tour: Position3D[];
