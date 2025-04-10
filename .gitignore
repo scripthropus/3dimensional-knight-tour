@@ -25,3 +25,11 @@ dist-ssr
 .env
 
 notes/
+
+.firebaserc
+apphosting.yaml
+firebase.json
+firestore.indexes.json
+firestore.rules
+dataconnect/
+dataconnect-generated/

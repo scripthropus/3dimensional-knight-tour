@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ChessBoard } from "./ChessBoard.tsx";
 import { levels, Position3D, knightMoves3D, ranks } from "./knightTour.ts";
 import "./css/chess.css";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 type ChessBoardsProps = {
 	tour: Position3D[];
