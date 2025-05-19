@@ -10,12 +10,10 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 		<div className="login-container">
 			<div className="image-container"></div>
 			<div className="login-box">
-				<h1>ログインしますか</h1>
-				<p>ログインするとツアーの保存ができます</p>
 				<GoogleLogin
 					onSuccess={onLoginSuccess}
 					onError={() => {
-						console.log("ログインに失敗しました");
+						alert("ログインに失敗しました");
 					}}
 				/>
 			</div>

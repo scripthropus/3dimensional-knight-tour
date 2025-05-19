@@ -15,14 +15,6 @@ export const Chess = () => {
 
 	return (
 		<div className="container">
-			<AppBar position="static">
-				<Toolbar>
-					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						setting
-					</Typography>
-					<Button color="inherit">Login</Button>
-				</Toolbar>
-			</AppBar>
 			<TourButton setTour={setTour} tour={tour} />
 			<ChessBoards tour={tour} />
 		</div>

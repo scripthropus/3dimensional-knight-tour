@@ -10,7 +10,7 @@ type TourButtonProps = {
 
 export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 	const [isGenerating, setIsGenerating] = useState(false);
-	const [steps, setSteps] = useState(10);
+	const [steps, setSteps] = useState(100);
 	const [showSolution, setShowSolution] = useState(false);
 
 	const handleGenerateTour = async () => {
@@ -22,19 +22,14 @@ export const TourButton = ({ setTour, tour }: TourButtonProps) => {
 			file: randFile,
 			level: randLevel,
 		};
-		try {
-			const newTour = await makeTour(steps, startPos);
-			setTour(() => newTour);
-		} catch (e) {
-			console.log(`ナイトツアーの生成中にエラー ${e}`);
-		}
+		if (steps < 1 || steps > 384) return;
+		const newTour = await makeTour(steps, startPos);
+		setTour(() => newTour);
 	};
 
 	const handleStepsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = Number.parseInt(e.target.value);
-		if (!isNaN(value) && value > 1) {
-			setSteps(value);
-		}
+		setSteps(value);
 	};
 
 	return (
